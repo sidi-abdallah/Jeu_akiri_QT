@@ -16,16 +16,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    src/main.cpp \
+    src/AkariModel.cpp\
+    src/AkariView.cpp \
+    src/main.cpp\
     src/mainwindow.cpp
 
 HEADERS += \
-    include/mainwindow.h
+    include/AkariModel.h \
+    include/mainwindow.h \
+    include/AkariView.h
+
 
 FORMS += \
     mainwindow.ui
 
-RES    
 
 TRANSLATIONS += \
     jeu_akiri_qt_fr_FR.ts
