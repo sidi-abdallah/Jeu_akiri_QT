@@ -1,2 +1,17 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource prefix="/grids">
+        <file>Akiri_Grids/7_easy.txt</file>
+        <file>Akiri_Grids/7_hard.txt</file>
+        <file>Akiri_Grids/7_normal.txt</file>
+        <file>Akiri_Grids/10_easy.txt</file>
+        <file>Akiri_Grids/10_hard.txt</file>
+        <file>Akiri_Grids/10_normal.txt</file>
+        <file>Akiri_Grids/14_easy.txt</file>
+        <file>Akiri_Grids/14_hard.txt</file>
+        <file>Akiri_Grids/14_normal.txt</file>
+    </qresource>
+    <qresource prefix="/lights">
+        <file>lights/light.png</file>
+        <file>lights/red_light.png</file>
+    </qresource>
+</RCC>
