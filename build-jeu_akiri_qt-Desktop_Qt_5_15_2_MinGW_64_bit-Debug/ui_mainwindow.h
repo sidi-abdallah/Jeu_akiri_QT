@@ -11,9 +11,9 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -33,11 +33,11 @@ public:
     AkariView *GridWidget;
     QWidget *gridLayoutWidget;
     QGridLayout *gridLayout;
-    QLineEdit *lineEdit;
-    QLabel *label_2;
-    QLineEdit *lineEdit_2;
-    QLabel *label;
+    QLabel *level_box_2;
+    QLabel *size_label;
     QPushButton *pushButton;
+    QComboBox *size_box;
+    QComboBox *level_box;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -66,30 +66,36 @@ public:
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setSizeConstraint(QLayout::SetMinimumSize);
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        lineEdit = new QLineEdit(gridLayoutWidget);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        level_box_2 = new QLabel(gridLayoutWidget);
+        level_box_2->setObjectName(QString::fromUtf8("level_box_2"));
 
-        gridLayout->addWidget(lineEdit, 0, 1, 1, 1);
+        gridLayout->addWidget(level_box_2, 1, 0, 1, 1);
 
-        label_2 = new QLabel(gridLayoutWidget);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
+        size_label = new QLabel(gridLayoutWidget);
+        size_label->setObjectName(QString::fromUtf8("size_label"));
 
-        gridLayout->addWidget(label_2, 1, 0, 1, 1);
-
-        lineEdit_2 = new QLineEdit(gridLayoutWidget);
-        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
-
-        gridLayout->addWidget(lineEdit_2, 1, 1, 1, 1);
-
-        label = new QLabel(gridLayoutWidget);
-        label->setObjectName(QString::fromUtf8("label"));
-
-        gridLayout->addWidget(label, 0, 0, 1, 1);
+        gridLayout->addWidget(size_label, 0, 0, 1, 1);
 
         pushButton = new QPushButton(gridLayoutWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
         gridLayout->addWidget(pushButton, 2, 0, 1, 2);
+
+        size_box = new QComboBox(gridLayoutWidget);
+        size_box->addItem(QString());
+        size_box->addItem(QString());
+        size_box->addItem(QString());
+        size_box->setObjectName(QString::fromUtf8("size_box"));
+
+        gridLayout->addWidget(size_box, 0, 1, 1, 1);
+
+        level_box = new QComboBox(gridLayoutWidget);
+        level_box->addItem(QString());
+        level_box->addItem(QString());
+        level_box->addItem(QString());
+        level_box->setObjectName(QString::fromUtf8("level_box"));
+
+        gridLayout->addWidget(level_box, 1, 1, 1, 1);
 
         gridLayout->setRowMinimumHeight(0, 1);
         gridLayout->setRowMinimumHeight(1, 1);
@@ -111,9 +117,17 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "Level :", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "Size : ", nullptr));
+        level_box_2->setText(QCoreApplication::translate("MainWindow", "Level :", nullptr));
+        size_label->setText(QCoreApplication::translate("MainWindow", "Size : ", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "Play", nullptr));
+        size_box->setItemText(0, QCoreApplication::translate("MainWindow", "7 * 7", nullptr));
+        size_box->setItemText(1, QCoreApplication::translate("MainWindow", "10 * 10", nullptr));
+        size_box->setItemText(2, QCoreApplication::translate("MainWindow", "14 * 14", nullptr));
+
+        level_box->setItemText(0, QCoreApplication::translate("MainWindow", "Easy", nullptr));
+        level_box->setItemText(1, QCoreApplication::translate("MainWindow", "Medium", nullptr));
+        level_box->setItemText(2, QCoreApplication::translate("MainWindow", "Hard", nullptr));
+
     } // retranslateUi
 
 };
