@@ -35,7 +35,7 @@ public:
     QGridLayout *gridLayout;
     QLabel *level_box_2;
     QLabel *size_label;
-    QPushButton *pushButton;
+    QPushButton *playButton;
     QComboBox *size_box;
     QComboBox *level_box;
     QMenuBar *menubar;
@@ -76,10 +76,10 @@ public:
 
         gridLayout->addWidget(size_label, 0, 0, 1, 1);
 
-        pushButton = new QPushButton(gridLayoutWidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        playButton = new QPushButton(gridLayoutWidget);
+        playButton->setObjectName(QString::fromUtf8("playButton"));
 
-        gridLayout->addWidget(pushButton, 2, 0, 1, 2);
+        gridLayout->addWidget(playButton, 2, 0, 1, 2);
 
         size_box = new QComboBox(gridLayoutWidget);
         size_box->addItem(QString());
@@ -119,10 +119,10 @@ public:
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         level_box_2->setText(QCoreApplication::translate("MainWindow", "Level :", nullptr));
         size_label->setText(QCoreApplication::translate("MainWindow", "Size : ", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "Play", nullptr));
-        size_box->setItemText(0, QCoreApplication::translate("MainWindow", "7 * 7", nullptr));
-        size_box->setItemText(1, QCoreApplication::translate("MainWindow", "10 * 10", nullptr));
-        size_box->setItemText(2, QCoreApplication::translate("MainWindow", "14 * 14", nullptr));
+        playButton->setText(QCoreApplication::translate("MainWindow", "Play", nullptr));
+        size_box->setItemText(0, QCoreApplication::translate("MainWindow", "7 x 7", nullptr));
+        size_box->setItemText(1, QCoreApplication::translate("MainWindow", "10 x 10", nullptr));
+        size_box->setItemText(2, QCoreApplication::translate("MainWindow", "14 x 14", nullptr));
 
         level_box->setItemText(0, QCoreApplication::translate("MainWindow", "Easy", nullptr));
         level_box->setItemText(1, QCoreApplication::translate("MainWindow", "Medium", nullptr));

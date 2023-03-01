@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+class AkariModel;
+class AkariView;
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -16,6 +19,19 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow * ui;
+    AkariModel * _model;
+
+protected slots :
+    /**
+     * @brief updateView update all the viewWidget values from the model one when they changed
+     */
+    virtual void updateView();
+
+signals :
+    /**
+     * @brief notify sent to update of the viewWidget to launch QPainter again
+     */
+    void notify();
 };
 #endif // MAINWINDOW_H
