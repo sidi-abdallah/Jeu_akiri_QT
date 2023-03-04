@@ -1,6 +1,8 @@
 #ifndef AKARIMODEL_H
 #define AKARIMODEL_H
 #include <QObject>
+#include "common.h"
+#include "include/Matrix.h"
 
 class AkariModel : public QObject {
 
@@ -18,6 +20,8 @@ public:
     Normal,
     Hard
   };
+
+
 
   /*
    * Enum type for grid size
@@ -70,7 +74,7 @@ public:
   /**
    * @brief get_matrix gets the grid matrix
    */
-  char ** get_matrix();
+  Matrix<char> & get_matrix();
 
 
 
@@ -94,7 +98,7 @@ public slots :
 private:
   Size _size;
   Level _level;
-  char ** _matrix;
+  Matrix<char> & _matrix;
 
   /**
    * @brief fill_matrix fill the _matrix from a file

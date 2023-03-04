@@ -1,0 +1,15 @@
+#ifndef COMMON_H
+#define COMMON_H
+
+enum cellState
+{
+    NO_CLICKABLE,
+    CLICKABLE_WITHOUT_LAMP,
+    CLICKABLE_WITH_LAMP,
+    CLICKABLE_WITH_NEIGHBOUR_LAMP
+
+
+};
+
+
+#endif // COMMON_H
