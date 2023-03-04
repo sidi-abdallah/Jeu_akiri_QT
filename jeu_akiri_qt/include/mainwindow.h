@@ -22,6 +22,8 @@ private:
     Ui::MainWindow * ui;
     AkariModel * _model;
 
+    void init();
+
 protected slots :
     /**
      * @brief updateView update all the viewWidget values from the model one when they changed

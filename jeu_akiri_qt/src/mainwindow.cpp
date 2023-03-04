@@ -8,13 +8,14 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     _model = new AkariModel();
-    _model->set_level(ui->level_box->currentIndex());
-    _model->set_size(ui->size_box->currentIndex());
+
+    init();
     connect(ui->level_box, QOverload<int>::of(&QComboBox::currentIndexChanged), _model, &AkariModel::set_level);
     connect(ui->size_box, QOverload<int>::of(&QComboBox::currentIndexChanged), _model, &AkariModel::set_size);
-    _model->create_grid();
+
     connect(ui->playButton, &QPushButton::clicked, this, &MainWindow::updateView);
-    connect(this, SIGNAL(notify()), ui->GridWidget,SLOT(update()));
+    connect(this, SIGNAL(notify()), ui->Gridwidget,SLOT(update()));
+
 }
 
 MainWindow::~MainWindow()
@@ -23,10 +24,20 @@ MainWindow::~MainWindow()
 }
 
 
+void MainWindow::init(){
+    _model->set_level(ui->level_box->currentIndex());
+    _model->set_size(ui->size_box->currentIndex());
+    _model->create_grid();
+     ui->Gridwidget->set_matrix(_model->get_matrix());
+     ui->Gridwidget->set_size(_model->get_sizeInteger());
+}
+
+
 
 void MainWindow::updateView() {
-    //Decommeter cette sequence lorsque les fonctions setMatrix et set_size sont definis
-//      ui->GridWidget->setMatrix(_model->get_matrix());
-//      ui->GridWidget->set_size(_model->get_sizeInteger());
+
+    _model->create_grid();
+    ui->Gridwidget->set_matrix(_model->get_matrix());
+    ui->Gridwidget->set_size(_model->get_sizeInteger());
      emit notify();
 }

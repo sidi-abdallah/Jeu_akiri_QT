@@ -10,8 +10,6 @@ AkariModel::AkariModel(QObject *parent)
     : QObject{parent}
 {
 
-
-
 }
 
 void AkariModel::set_size(int size_index) {
@@ -82,7 +80,7 @@ void AkariModel::fill_matrix(QString filename) {
            line = file.readLine();
        }
        _matrix = (char ** ) malloc(get_sizeInteger() * sizeof(char *));
-       for(int i = 0; i < 7; i++) {
+       for(int i = 0; i < get_sizeInteger(); i++) {
            _matrix[i] = (char *) malloc(get_sizeInteger() * sizeof(char));
        }
 
@@ -109,7 +107,6 @@ void AkariModel::create_grid() {
 
     for (const QString& filename : filesList) {
             if(containsSubstring(filename.toStdString(), levelString) && containsSubstring(filename.toStdString(), sizeString)) {
-                cout << "file found" << endl;
                 fill_matrix(filename);
             }
     }
