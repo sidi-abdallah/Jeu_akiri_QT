@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>918</width>
     <height>600</height>
    </rect>
   </property>
@@ -14,102 +14,91 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>99</x>
-      <y>119</y>
-      <width>211</width>
-      <height>221</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="AkariView" name="GridWidget" native="true"/>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="gridLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>10</y>
-      <width>160</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout" rowminimumheight="1,1,4">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMinimumSize</enum>
-     </property>
-     <item row="1" column="0">
-      <widget class="QLabel" name="level_box_2">
-       <property name="text">
-        <string>Level :</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="size_label">
-       <property name="text">
-        <string>Size : </string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0" colspan="2">
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>Play</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QComboBox" name="size_box">
-       <item>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QGridLayout" name="gridLayout" columnstretch="1,1,10" columnminimumwidth="0,0,0">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMinimumSize</enum>
+      </property>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label">
         <property name="text">
-         <string>7 * 7</string>
+         <string>Level : </string>
         </property>
-       </item>
-       <item>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>10 * 10</string>
+         <string/>
         </property>
-       </item>
-       <item>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <widget class="QPushButton" name="playButton">
         <property name="text">
-         <string>14 * 14</string>
+         <string>Play</string>
         </property>
-       </item>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QComboBox" name="level_box">
-       <item>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="level_box">
+        <item>
+         <property name="text">
+          <string>Easy</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Medium</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Hard</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="size_box">
+        <item>
+         <property name="text">
+          <string>7 x 7</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>10 x 10</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>14 x 14</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Easy</string>
+         <string>Size :</string>
         </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Medium</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Hard</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-    </layout>
-   </widget>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="3">
+       <widget class="AkariView" name="Gridwidget" native="true"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>918</width>
      <height>17</height>
     </rect>
    </property>
@@ -120,7 +109,7 @@
   <customwidget>
    <class>AkariView</class>
    <extends>QWidget</extends>
-   <header>/include/AkariView.h</header>
+   <header location="global">akariview.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
