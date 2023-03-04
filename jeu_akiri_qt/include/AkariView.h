@@ -2,6 +2,8 @@
 #define AKARIVIEW_H
 
 #include <QWidget>
+#include"common.h"
+#include "include/Matrix.h"
 
 class AkariView : public QWidget
 {
@@ -26,15 +28,15 @@ private:
                         {'2', '.', '.', '0', '.', '.', '.', '.', '.', '1', '.', '.', '.', '.'},
                                                     };*/
 
-    char **  _matrix; /*[7][7] = {{'2', '.', '.', '0', '.', 'X', '.'},{'.', '.', '1', '.', '.', '.', '.'},
+    Matrix<char> &  _matrix; /*[7][7] = {{'2', '.', '.', '0', '.', 'X', '.'},{'.', '.', '1', '.', '.', '.', '.'},
                          {'2', '.', '.', '0', '.', '.', '.'},{ '.', '.', '1', '.', '.', '.', '.'},
                          {'2', '.', '.', '0', '.', '.', '.'},{ '.', '.', '1', '.', '.', '.', '.'},
                          {'2', '.', '.', '0', '.', '.', '.'}};*/
-    int _size ;
+    int _size;
 
 public:
     void set_size(int size);
-    void set_matrix(char ** matrix);
+    void set_matrix(Matrix<char> & matrix);
      virtual void paintEvent(QPaintEvent *event) override;
      virtual void mousePressEvent(QMouseEvent *event) override;
 

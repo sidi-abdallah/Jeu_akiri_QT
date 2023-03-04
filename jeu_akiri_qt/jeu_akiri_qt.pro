@@ -23,8 +23,10 @@ SOURCES += \
 
 HEADERS += \
     include/AkariModel.h \
+    include/common.h \
     include/mainwindow.h \
-    include/AkariView.h
+    include/AkariView.h \
+    include/Matrix.h
 
 
 FORMS += \

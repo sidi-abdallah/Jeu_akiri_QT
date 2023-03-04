@@ -3,11 +3,12 @@
 #include <QDir>
 #include <QRandomGenerator>
 #include "include/AkariModel.h"
+#include "include/Matrix.h"
 
 using namespace std;
 
 AkariModel::AkariModel(QObject *parent)
-    : QObject{parent}
+    : QObject{parent},  _matrix(*(new Matrix<char>(7)))
 {
 
 }
@@ -56,7 +57,7 @@ bool AkariModel::containsSubstring(const string& s, const string& substring) {
     return s.find(substring) != string::npos;
 }
 
-char ** AkariModel::get_matrix() {
+Matrix<char> & AkariModel::get_matrix() {
     return _matrix;
 }
 
@@ -69,7 +70,7 @@ void AkariModel::fill_matrix(QString filename) {
    if (file.open(QIODevice::ReadOnly)) {
        line = file.readLine();
        QRandomGenerator generator = QRandomGenerator::securelySeeded();
-       lineIndex = generator.bounded(1,line.toInt());
+       lineIndex = generator.bounded(2,line.toInt());
        printf("%d \n",  line.toInt());
        printf("ligne index %d\n", lineIndex);
        for (int i = 1; i < lineIndex; i++) {
@@ -79,15 +80,16 @@ void AkariModel::fill_matrix(QString filename) {
            }
            line = file.readLine();
        }
-       _matrix = (char ** ) malloc(get_sizeInteger() * sizeof(char *));
-       for(int i = 0; i < get_sizeInteger(); i++) {
-           _matrix[i] = (char *) malloc(get_sizeInteger() * sizeof(char));
-       }
+//       _matrix = (char ** ) malloc(get_sizeInteger() * sizeof(char *));
+//       for(int i = 0; i < get_sizeInteger(); i++) {
+//           _matrix[i] = (char *) malloc(get_sizeInteger() * sizeof(char));
+//       }
+       _matrix = * new Matrix<char>(get_sizeInteger());
 
        for (int row = 0; row < get_sizeInteger(); row++) {
            for(int col = 0; col < get_sizeInteger(); col++) {
-               _matrix[row][col] = line.toStdWString()[(get_sizeInteger() * row) + col];
-               printf("%c ",_matrix[row][col]);
+               _matrix(row, col)= line.toStdWString()[(get_sizeInteger() * row) + col];
+               printf("%c ",_matrix(row, col));
            }
        }
 

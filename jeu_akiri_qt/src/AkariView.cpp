@@ -2,10 +2,12 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QDebug>
+#include "include/Matrix.h"
 
 
-AkariView::AkariView(QWidget *parent) : QWidget(parent)
+AkariView::AkariView(QWidget *parent) : QWidget(parent),  _matrix(*(new Matrix<char>(7)))
 {
+   // _matrix = Matrix<char>(7);
 
 }
 
@@ -13,7 +15,7 @@ void AkariView::set_size(int size) {
     _size = size;
 }
 
-void AkariView::set_matrix(char ** matrix) {
+void AkariView::set_matrix(Matrix<char> & matrix) {
 
     _matrix = matrix;
 }
@@ -43,7 +45,7 @@ void AkariView::paintEvent(QPaintEvent *event){
         for (int j = 0; j < _size; ++j){
         pos_x = (cell_width * i) + x_start_point;
         pos_y = (cell_height * j) + y_start_point;
-        switch(_matrix[i][j]){
+        switch(_matrix(i, j)){
             case '.':
                 painter.fillRect(pos_y, pos_x, cell_width, cell_height, Qt::white);
             break;
