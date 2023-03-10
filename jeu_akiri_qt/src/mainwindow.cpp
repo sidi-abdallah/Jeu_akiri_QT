@@ -1,6 +1,7 @@
 #include "include/mainwindow.h"
 #include "include/AkariModel.h"
 #include "ui_mainwindow.h"
+#include "include/Grid.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,8 +29,8 @@ void MainWindow::init(){
     _model->set_level(ui->level_box->currentIndex());
     _model->set_size(ui->size_box->currentIndex());
     _model->create_grid();
-     ui->Gridwidget->set_matrix(_model->get_matrix());
-     ui->Gridwidget->set_size(_model->get_sizeInteger());
+     ui->Gridwidget->getGrid()->setSize(_model->get_sizeInteger());
+     ui->Gridwidget->getGrid()->setCellsState(_model->get_cellsStateMatrix());
 }
 
 
@@ -37,7 +38,7 @@ void MainWindow::init(){
 void MainWindow::updateView() {
 
     _model->create_grid();
-    ui->Gridwidget->set_matrix(_model->get_matrix());
-    ui->Gridwidget->set_size(_model->get_sizeInteger());
+   ui->Gridwidget->getGrid()->setCellsState(_model->get_cellsStateMatrix());
+    ui->Gridwidget->getGrid()->setSize(_model->get_sizeInteger());
      emit notify();
 }
