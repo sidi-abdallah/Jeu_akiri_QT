@@ -3,6 +3,8 @@
 #include <QObject>
 #include "common.h"
 #include "include/Matrix.h"
+#include <map>
+#include <vector>
 
 class AkariModel : public QObject {
 
@@ -72,9 +74,10 @@ public:
   bool containsSubstring(const std::string& mainString, const std::string& subString);
 
   /**
-   * @brief get_matrix gets the grid matrix
+   * @brief get_cellsStateMatrix gets the grid matrix
    */
-  Matrix<char> & get_matrix();
+  Matrix<cellState> & get_cellsStateMatrix();
+
 
 
 
@@ -93,18 +96,30 @@ public slots :
      */
     virtual void set_level(int level_index);
 
+    virtual void onCellClicked(int row, int col);
 
+    virtual void ONDoneClicked();
+signals :
+  void responseOnMouseClick(Matrix<cellState> &);
+  void areWin(bool);
 
 private:
   Size _size;
   Level _level;
-  Matrix<char> & _matrix;
+ // Matrix<char> & _cellsStateMatrix;
+  Matrix<cellState> & _cellsStateMatrix;
+
+  std::map<std::pair<int, int>, std::vector<std::pair<int, int>>> _map;
 
   /**
-   * @brief fill_matrix fill the _matrix from a file
+   * @brief fill_cellsStateMatrix fill the _cellsStateMatrix from a file
    * @param filename file's name
    */
-  void fill_matrix(QString filename);
+  void fill_cellsStateMatrix(QString filename);
+
+  void fill_neigbours_list(int beg, int end, std::vector<std::pair<int, int>> & neigbours);
+
+  bool verify_four_neigbours(int max_lamps, int row, int col);
 
 
 

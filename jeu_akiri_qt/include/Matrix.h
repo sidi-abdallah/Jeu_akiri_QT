@@ -40,7 +40,7 @@ Matrix<T> & Matrix<T>::operator=(Matrix<T> & other) {
     if(&other == this) {
        return *this;
     }
-   // delete [] _data;
+  //  delete [] _data;
 
     _size = other.size();
     memcpy(_data, other.data(), _size * _size * sizeof(T));
@@ -54,7 +54,7 @@ T & Matrix<T>::operator()(int row, int col) {
 
 template <typename T>
 Matrix<T>::~Matrix() {
-    delete[] _data;
+    delete _data;
 }
 
 #endif // MATRIX_H

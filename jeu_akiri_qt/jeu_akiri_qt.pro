@@ -18,6 +18,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/AkariModel.cpp\
     src/AkariView.cpp \
+    src/Cell.cpp \
+    src/Grid.cpp \
     src/main.cpp\
     src/mainwindow.cpp
 
@@ -26,7 +28,9 @@ HEADERS += \
     include/common.h \
     include/mainwindow.h \
     include/AkariView.h \
-    include/Matrix.h
+    include/Matrix.h \
+    include/Cell.h \
+    include/Grid.h
 
 
 FORMS += \

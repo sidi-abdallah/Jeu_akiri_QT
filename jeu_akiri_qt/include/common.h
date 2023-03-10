@@ -3,12 +3,16 @@
 
 enum cellState
 {
-    NO_CLICKABLE,
-    CLICKABLE_WITHOUT_LAMP,
-    CLICKABLE_WITH_LAMP,
-    CLICKABLE_WITH_NEIGHBOUR_LAMP
-
-
+    BLACK = 0,
+    BLACK_0,
+    BLACK_1,
+    BLACK_2,
+    BLACK_3,
+    BLACK_4,
+    ENLIGHTENED,
+    UNENLIGHTENED,
+    RED_LAMP,
+    YELLOW_LAMP
 };
 
 

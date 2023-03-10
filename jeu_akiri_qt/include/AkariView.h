@@ -5,6 +5,7 @@
 #include"common.h"
 #include "include/Matrix.h"
 
+class Grid;
 class AkariView : public QWidget
 {
     Q_OBJECT
@@ -12,33 +13,17 @@ public:
     explicit AkariView(QWidget *parent = nullptr);
 
 private:
-    /*int  matrix[14][14] = {{'2', '.', '.', '0', '.', '.', '.', '.', '.', '1', '.', '.', '.', '.'},
-                         {'2', '.', '.', '0', '.', '.', '.', '.', '.', '1', '.', '.', '.', '.'},
-                         {'2', '.', '.', '0', '.', '.', '.', '.', '.', '1', '.', '.', '.', '.'},
-                         {'2', '.', '.', '0', '.', '.', '.', '.', '.', '1', '.', '.', '.', '.'},
-                         {'2', '.', '.', '0', '.', '.', '.', '.', '.', '1', '.', '.', '.', '.'},
-                       {'2', '.', '.', '0', '.', '.', '.', '.', '.', '1', '.', '.', '.', '.'},
-                        {'2', '.', '.', '0', '.', '.', '.', '.', '.', '1', '.', '.', '.', '.'},
-                        {'2', '.', '.', '0', '.', '.', '.', '.', '.', '1', '.', '.', '.', '.'},
-                        {'2', '.', '.', '0', '.', '.', '.', '.', '.', '1', '.', '.', '.', '.'},
-                        {'2', '.', '.', '0', '.', '.', '.', '.', '.', '1', '.', '.', '.', '.'},
-                       {'2', '.', '.', '0', '.', '.', '.', '.', '.', '1', '.', '.', '.', '.'},
-                        {'2', '.', '.', '0', '.', '.', '.', '.', '.', '1', '.', '.', '.', '.'},
-                        {'2', '.', '.', '0', '.', '.', '.', '.', '.', '1', '.', '.', '.', '.'},
-                        {'2', '.', '.', '0', '.', '.', '.', '.', '.', '1', '.', '.', '.', '.'},
-                                                    };*/
-
-    Matrix<char> &  _matrix; /*[7][7] = {{'2', '.', '.', '0', '.', 'X', '.'},{'.', '.', '1', '.', '.', '.', '.'},
-                         {'2', '.', '.', '0', '.', '.', '.'},{ '.', '.', '1', '.', '.', '.', '.'},
-                         {'2', '.', '.', '0', '.', '.', '.'},{ '.', '.', '1', '.', '.', '.', '.'},
-                         {'2', '.', '.', '0', '.', '.', '.'}};*/
-    int _size;
+//    Matrix<cellState> & _cellsState;
+//    int _size;
+    Grid * _grid;
 
 public:
-    void set_size(int size);
-    void set_matrix(Matrix<char> & matrix);
-     virtual void paintEvent(QPaintEvent *event) override;
-     virtual void mousePressEvent(QMouseEvent *event) override;
+//    void set_size(int size);
+//    void set_matrix(Matrix<cellState> & matrix);
+    void setGrid(Grid * grid);
+    Grid * getGrid();
+    virtual void paintEvent(QPaintEvent *event) override;
+    virtual void mousePressEvent(QMouseEvent *event) override;
 
 signals:
     void cellClicked(int row, int col);
