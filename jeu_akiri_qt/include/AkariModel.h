@@ -78,10 +78,9 @@ public:
    */
   Matrix<cellState> & get_cellsStateMatrix();
 
-
-
-
   void create_grid();
+
+  void clearGrid();
 
 public slots :
     /**
@@ -101,7 +100,7 @@ public slots :
     virtual void ONDoneClicked();
 signals :
   void responseOnMouseClick(Matrix<cellState> &);
-  void areWin(bool);
+  void isDone(bool);
 
 private:
   Size _size;

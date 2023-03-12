@@ -14,9 +14,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->level_box, QOverload<int>::of(&QComboBox::currentIndexChanged), _model, &AkariModel::set_level);
     connect(ui->size_box, QOverload<int>::of(&QComboBox::currentIndexChanged), _model, &AkariModel::set_size);
 
-    connect(ui->playButton, &QPushButton::clicked, this, &MainWindow::updateView);
+    connect(ui->changeGridButton, &QPushButton::clicked, this, &MainWindow::updateView);
     connect(this, SIGNAL(notify()), ui->Gridwidget,SLOT(update()));
-
+    connect(ui->Gridwidget, &AkariView::cellClicked, _model, &AkariModel::onCellClicked);
+    connect(_model, &AkariModel::responseOnMouseClick, ui->Gridwidget->getGrid(), &Grid::setCellsState);
+   // connect(ui->Gridwidget->getGrid(), SIGNAL(notify()), ui->Gridwidget,SLOT(update()));
+    connect(ui->doneButton, &QPushButton::clicked, _model, &AkariModel::ONDoneClicked);
+    connect(_model, &AkariModel::isDone, this, &MainWindow::onDoneClicked);
+    connect(ui->restartButton, &QPushButton::clicked, this, &MainWindow::onRestartClicked);
 }
 
 MainWindow::~MainWindow()
@@ -36,9 +41,33 @@ void MainWindow::init(){
 
 
 void MainWindow::updateView() {
-
-    _model->create_grid();
+   _model->create_grid();
+   ui->Gridwidget->getGrid()->setSize(_model->get_sizeInteger());
    ui->Gridwidget->getGrid()->setCellsState(_model->get_cellsStateMatrix());
-    ui->Gridwidget->getGrid()->setSize(_model->get_sizeInteger());
-     emit notify();
+   emit notify();
 }
+
+void MainWindow::onDoneClicked(bool isDone) {
+    if(isDone) {
+        ui->messageLabel->setText("Bingoooo, You won");
+    }
+    else {
+        ui->messageLabel->setText("Oooops, Try again");
+    }
+}
+
+
+void MainWindow::onRestartClicked() {
+    ui->messageLabel->clear();
+    _model->clearGrid();
+    ui->Gridwidget->getGrid()->setSize(_model->get_sizeInteger());
+    ui->Gridwidget->getGrid()->setCellsState(_model->get_cellsStateMatrix());
+
+}
+
+
+
+
+
+
+

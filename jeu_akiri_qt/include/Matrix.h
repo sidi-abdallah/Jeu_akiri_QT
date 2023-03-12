@@ -40,9 +40,9 @@ Matrix<T> & Matrix<T>::operator=(Matrix<T> & other) {
     if(&other == this) {
        return *this;
     }
-  //  delete [] _data;
-
+    delete [] _data;
     _size = other.size();
+    _data = new T[_size * _size];
     memcpy(_data, other.data(), _size * _size * sizeof(T));
     return *this;
 }

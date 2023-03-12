@@ -153,13 +153,13 @@ void AkariModel::fill_neigbours_list(int row, int col,  std::vector<std::pair<in
     }
 
     i = col + 1;
-    while(i < get_sizeInteger() &&  (_cellsStateMatrix(i, col) == UNENLIGHTENED || _cellsStateMatrix(i, col) == ENLIGHTENED || _cellsStateMatrix(i, col) == YELLOW_LAMP  || _cellsStateMatrix(i, col) == RED_LAMP)) {
+    while(i < get_sizeInteger() &&  (_cellsStateMatrix(row, i) == UNENLIGHTENED || _cellsStateMatrix(row, i) == ENLIGHTENED || _cellsStateMatrix(row, i) == YELLOW_LAMP  || _cellsStateMatrix(row, i) == RED_LAMP)) {
         neigbours.push_back(std::make_pair(row, i));
         i++;
     }
 
     i = col - 1;
-    while(i >= 0 &&  (_cellsStateMatrix(i, col) == UNENLIGHTENED || _cellsStateMatrix(i, col) == ENLIGHTENED || _cellsStateMatrix(i, col) == YELLOW_LAMP  || _cellsStateMatrix(i, col) == RED_LAMP)) {
+    while(i >= 0 &&  (_cellsStateMatrix(row, i) == UNENLIGHTENED || _cellsStateMatrix(row, i) == ENLIGHTENED || _cellsStateMatrix(row, i) == YELLOW_LAMP  || _cellsStateMatrix(row, i) == RED_LAMP)) {
         neigbours.push_back(std::make_pair(row, i));
         i--;
     }
@@ -168,86 +168,97 @@ void AkariModel::fill_neigbours_list(int row, int col,  std::vector<std::pair<in
 void AkariModel::onCellClicked(int row, int col) {
     //peut etre je dois le mettre constante
     std::vector<std::pair<int, int>>  neigbours;
-    bool inter = false;
+   // bool inter = false;
 
+    if(row < 0 || col < 0) return;
 
     switch (_cellsStateMatrix(row, col)) {
-    case UNENLIGHTENED:
-        fill_neigbours_list(row, col, neigbours);
-        for (const auto& pair : neigbours) {
-            _cellsStateMatrix(pair.first, pair.second) = ENLIGHTENED;
-        }
-         _cellsStateMatrix(row, col) = YELLOW_LAMP;
-         _map[{row, col}] = neigbours;
-        emit responseOnMouseClick(_cellsStateMatrix);
-        break;
-
-    case ENLIGHTENED:
-        fill_neigbours_list(row, col, neigbours);
-        for (const auto& pair : neigbours) {
-            if(_cellsStateMatrix(pair.first, pair.second) == YELLOW_LAMP) {
-                _cellsStateMatrix(pair.first, pair.second) = RED_LAMP;
-            }
-            if( _cellsStateMatrix(pair.first, pair.second) == UNENLIGHTENED) {
+        case UNENLIGHTENED:
+            fill_neigbours_list(row, col, neigbours);
+            for (const auto& pair : neigbours) {
                 _cellsStateMatrix(pair.first, pair.second) = ENLIGHTENED;
             }
-        }
-        _cellsStateMatrix(row, col) = RED_LAMP;
-        _map[{row, col}] = neigbours;
-        emit responseOnMouseClick(_cellsStateMatrix);
+             _cellsStateMatrix(row, col) = YELLOW_LAMP;
+             _map[{row, col}] = neigbours;
+            emit responseOnMouseClick(_cellsStateMatrix);
+            break;
 
-        break;
-    case RED_LAMP :
-        for (const auto& pair : _map[{row, col}]) {
-//            if(_cellsStateMatrix(pair.first, pair.second) == YELLOW_LAMP || _cellsStateMatrix(pair.first, pair.second) == RED_LAMP) {
-//                _cellsStateMatrix(row, col) = ENLIGHTENED; //If a neigbour has a lamp so the cell will be ligtned after removing the lamp
-//            }
-            bool found = false;
-            for (const auto& key_value : _map) {
-                if (key_value.first == std::make_pair(row, col)) {
-                    continue;
+        case ENLIGHTENED:
+            fill_neigbours_list(row, col, neigbours);
+            for (const auto& pair : neigbours) {
+                if(_cellsStateMatrix(pair.first, pair.second) == YELLOW_LAMP) {
+                    _cellsStateMatrix(pair.first, pair.second) = RED_LAMP;
                 }
-                if (key_value.first == pair || std::find(key_value.second.begin(), key_value.second.end(), pair) != key_value.second.end()) {
-                    found = true;
-                    break;
+                if( _cellsStateMatrix(pair.first, pair.second) == UNENLIGHTENED) {
+                    _cellsStateMatrix(pair.first, pair.second) = ENLIGHTENED;
                 }
+            }
+            _cellsStateMatrix(row, col) = RED_LAMP;
+            _map[{row, col}] = neigbours;
+            emit responseOnMouseClick(_cellsStateMatrix);
 
-            }
-            if (!found) {
-                  _cellsStateMatrix(pair.first, pair.second) = UNENLIGHTENED;
-            }
-        }
-//        if(_cellsStateMatrix(row, col) != ENLIGHTENED) { //If true, then all neigbours are without lamps, so the cell will be unenligtned after removing lamp
-//            _cellsStateMatrix(row, col) = UNENLIGHTENED;
-//        }
-         _cellsStateMatrix(row, col) = ENLIGHTENED;
-        _map.erase({row, col}); // Remove the cell's neigbours from the map
-        emit responseOnMouseClick(_cellsStateMatrix);
-
-        break;
-    case YELLOW_LAMP :
-        for (const auto& pair : _map[{row, col}]) {
-            bool found = false;
-            for (const auto& key_value : _map) {
-                if (key_value.first == std::make_pair(row, col)) {
-                    continue;
+            break;
+        case RED_LAMP :
+            for (const auto& pair : _map[{row, col}]) {
+                bool isStayingRed = false;
+                if(_cellsStateMatrix(pair.first, pair.second) == RED_LAMP) {
+                    //_cellsStateMatrix(row, col) = ENLIGHTENED; //If a neigbour has a lamp so the cell will be ligtned after removing the lamp
+                    for(const auto& p : _map[{pair.first, pair.second}]) {
+                        if(_cellsStateMatrix(p.first, p.second) == RED_LAMP && p !=  std::make_pair(row, col)) {
+                            isStayingRed = true;
+                            break;
+                        }
+                    }
+                    if(!isStayingRed) {
+                        _cellsStateMatrix(pair.first, pair.second) = YELLOW_LAMP;
+                    }
                 }
-                if (key_value.first == pair || std::find(key_value.second.begin(), key_value.second.end(), pair) != key_value.second.end()) {
-                    found = true;
-                    break;
-                }
+                bool found = false;
+                for (const auto& key_value : _map) {
+                    if (key_value.first == std::make_pair(row, col)) {
+                        continue;
+                    }
+                    if (key_value.first == pair || std::find(key_value.second.begin(), key_value.second.end(), pair) != key_value.second.end()) {
+                        found = true;
+                        break;
+                    }
 
+                }
+                if (!found) {
+                      _cellsStateMatrix(pair.first, pair.second) = UNENLIGHTENED;
+                }
             }
-            if (!found) {
-                  _cellsStateMatrix(pair.first, pair.second) = UNENLIGHTENED;
+    //        if(_cellsStateMatrix(row, col) != ENLIGHTENED) { //If true, then all neigbours are without lamps, so the cell will be unenligtned after removing lamp
+    //            _cellsStateMatrix(row, col) = UNENLIGHTENED;
+    //        }
+             _cellsStateMatrix(row, col) = ENLIGHTENED;
+            _map.erase({row, col}); // Remove the cell's neigbours from the map
+            emit responseOnMouseClick(_cellsStateMatrix);
+
+            break;
+        case YELLOW_LAMP :
+            for (const auto& pair : _map[{row, col}]) {
+                bool found = false;
+                for (const auto& key_value : _map) {
+                    if (key_value.first == std::make_pair(row, col)) {
+                        continue;
+                    }
+                    if (key_value.first == pair || std::find(key_value.second.begin(), key_value.second.end(), pair) != key_value.second.end()) {
+                        found = true;
+                        break;
+                    }
+
+                }
+                if (!found) {
+                      _cellsStateMatrix(pair.first, pair.second) = UNENLIGHTENED;
+                }
             }
-        }
-         _cellsStateMatrix(row, col) = UNENLIGHTENED;
-        _map.erase({row, col}); // Remove the cell's neigbours from the map
-        emit responseOnMouseClick(_cellsStateMatrix);
-        break;
-    default:
-        break;
+             _cellsStateMatrix(row, col) = UNENLIGHTENED;
+            _map.erase({row, col}); // Remove the cell's neigbours from the map
+            emit responseOnMouseClick(_cellsStateMatrix);
+            break;
+        default:
+            break;
     }
 }
 
@@ -255,7 +266,7 @@ bool AkariModel:: verify_four_neigbours(int right_lamps_nb, int row, int col) {
     int lamps_nb = 0;
     for(int i = row - 1; i <= row + 1; i += 2) {
         if(i >= 0 && i < get_sizeInteger() && _cellsStateMatrix(i, col) == YELLOW_LAMP) {
-           // emit areWin(false);
+           // emit isDone(false);
             //return;
             lamps_nb++;
         }
@@ -274,38 +285,38 @@ void AkariModel::ONDoneClicked() {
        for(int col = 0; col < get_sizeInteger(); col++) {
            switch (_cellsStateMatrix(row, col)) {
                case UNENLIGHTENED :
-                   emit areWin(false);
+                   emit isDone(false);
                    return;
                case RED_LAMP :
-                   emit areWin(false);
+                   emit isDone(false);
                    return;
                case BLACK_0 :
                   if(!verify_four_neigbours(0, row, col)) {
-                      emit areWin(false);
+                      emit isDone(false);
                       return;
                   }
                   break;
                case BLACK_1 :
                   if(!verify_four_neigbours(1, row, col)) {
-                      emit areWin(false);
+                      emit isDone(false);
                       return;
                   }
                   break;
                case BLACK_2 :
                   if(!verify_four_neigbours(2, row, col)) {
-                      emit areWin(false);
+                      emit isDone(false);
                       return;
                   }
                   break;
                case BLACK_3 :
                   if(!verify_four_neigbours(3, row, col)) {
-                      emit areWin(false);
+                      emit isDone(false);
                       return;
                   }
                   break;
                case BLACK_4 :
                   if(!verify_four_neigbours(4, row, col)) {
-                      emit areWin(false);
+                      emit isDone(false);
                       return;
                   }
                   break;
@@ -316,12 +327,22 @@ void AkariModel::ONDoneClicked() {
        }
     }
 
-    emit areWin(true);
+    emit isDone(true);
 
 
 }
 
 
+void AkariModel::clearGrid() {
+    for (int row = 0; row < get_sizeInteger(); row++) {
+        for(int col = 0; col < get_sizeInteger(); col++) {
+            if(_cellsStateMatrix(row, col) == ENLIGHTENED || _cellsStateMatrix(row, col) == YELLOW_LAMP || _cellsStateMatrix(row, col) == RED_LAMP) {
+                _cellsStateMatrix(row, col) = UNENLIGHTENED;
+            }
+        }
+
+    }
+}
 
 
 

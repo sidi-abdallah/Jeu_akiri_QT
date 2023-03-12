@@ -1,4 +1,6 @@
 #include "include/Cell.h"
+#include <QMouseEvent>
+//#include "include/AkariView.h"
 
 
 
@@ -11,7 +13,7 @@ Cell::Cell(QWidget *parent)
 
 
 Cell::~Cell() {
-   // delete this;
+
 }
 
 
@@ -24,7 +26,6 @@ cellState Cell::getCellState(){
 void Cell::setCellState(cellState cellState){
     _cellState = cellState;
 }
-
 
 void Cell::drawCell(QPainter * _painter, int cellWidth, int pos_x, int pos_y){
     QImage yellow_light(":/lights/lights/light.png");
@@ -85,14 +86,4 @@ void Cell::drawCell(QPainter * _painter, int cellWidth, int pos_x, int pos_y){
 }
 
 
-
-//Cell & Cell::operator=(const Cell & cell){
-//    if(this == &cell){
-//        return *this;
-//    }
-//    _row = cell._row;
-//    _col = cell._col;
-//    _cellState = cell._cellState;
-//    return *this;
-//}
 

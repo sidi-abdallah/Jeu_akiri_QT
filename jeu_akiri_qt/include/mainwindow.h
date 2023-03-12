@@ -29,6 +29,8 @@ protected slots :
      * @brief updateView update all the viewWidget values from the model one when they changed
      */
     virtual void updateView();
+    virtual void onDoneClicked(bool);
+    virtual void onRestartClicked();
 
 signals :
     /**
