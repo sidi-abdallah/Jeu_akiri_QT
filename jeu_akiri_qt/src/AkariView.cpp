@@ -1,15 +1,19 @@
 #include "include/AkariView.h"
 #include <QPainter>
+#include <QWidget>
 #include <QMouseEvent>
 #include <QDebug>
 //#include "include/Matrix.h"
 #include "include/Grid.h"
+#include <QGridLayout>
 
 
 AkariView::AkariView(QWidget *parent) : QWidget(parent)
 {
 
     _grid = new Grid(this);
+     connect(_grid, SIGNAL(notify()), this,SLOT(update()));
+
 }
 
 void AkariView::setGrid(Grid * grid) {
@@ -23,71 +27,29 @@ void AkariView::paintEvent(QPaintEvent *event){
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
     painter.fillRect(rect(), Qt::lightGray);
+
     _grid->drawGrid(&painter, height());
 
+}
+
+void AkariView::OncellClicked(int row, int col) {
+    emit cellClicked(row, col);
+}
 
 
+void AkariView::mousePressEvent(QMouseEvent *event)
+{
+    const QPoint pos = event->pos();
+    const int pos_x_at_grid = pos.x() -  (height() / 10);
+    const int pos_y_at_grid = pos.y() -  (height() / 10);
 
-
-
-//    // Basic grid drawing
-//    int x_current_start_point = x_start_point;
-//    int y_current_start_point = y_start_point;
-//    int x_current_end_point = x_end_point;
-//    int y_current_end_point = y_end_point;
-
-//    // Draw Lines
-//    for (int i = 0; i <= _size; ++i){
-//        painter.drawLine(x_current_start_point, y_current_start_point, x_current_end_point, y_current_start_point);
-//        y_current_start_point += cell_height;
-//    }
-
-//    // update values
-//    x_current_start_point = x_start_point;
-//    y_current_start_point = y_start_point;
-//    x_current_end_point = x_end_point;
-//    y_current_end_point = y_end_point;
-
-
-//    // Draw Columns
-
-//    for (int i = 0; i <= _size; ++i){
-//        painter.drawLine(x_current_start_point, y_current_start_point, x_current_start_point, y_current_end_point);
-//        x_current_start_point += cell_width;
-//    }
-
+    if(pos_x_at_grid < 0 || pos_x_at_grid > (_grid->getSize() * _grid->getCellWidth()) || pos_y_at_grid < 0 || pos_y_at_grid > (_grid->getSize() * _grid->getCellWidth())) {
+        return;
+    }
+    const int row = pos_y_at_grid / _grid->getCellWidth();
+    const int col = pos_x_at_grid / _grid->getCellWidth();
+    emit cellClicked(row, col);
 }
 
 
 
-void AkariView::mousePressEvent(QMouseEvent *event){
-    /*int x = event->x();
-    int y = event->y();
-
-
-    // Calculate cell coordinates
-    int x_start_point = 0;
-    int y_start_point = 0;
-    int cell_width = ( 8 * height()) / (10 * _size);
-    int cell_height = cell_width;
-    int row = y / cell_height;
-    int col = x / cell_width;
-
-    if((y - y_start_point) / cell_height > _size || (y - y_start_point) / cell_height <= 0){
-        row = -1;
-    }
-
-    if((x - x_start_point) / cell_width > _size || (x - x_start_point) / cell_width <= 0){
-        col = -1;
-    }
-
-    // if row == -1 or j == -1, that means that the clicked position is outside the grid, otherwise, a signal is emit
-    if(row != -1 && col != -1){
-        emit cellClicked(row-1, col-1);
-    }
-
-    qDebug() << "Cell clicked: (" << row << "," << col << ")";*/
-}
-
-// signal to send : connect(_AkariView, SIGNAL(AkariView::mousePressEvent(int, int)), ...)
-// it is important to use SIGNAL and SLOT so that the slot could recover the values sent by the signal :) :)

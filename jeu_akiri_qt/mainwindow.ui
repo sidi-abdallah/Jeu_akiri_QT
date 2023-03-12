@@ -14,7 +14,10 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="8,1">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetMinimumSize</enum>
+    </property>
     <item>
      <layout class="QGridLayout" name="gridLayout" columnstretch="1,1,10" columnminimumwidth="0,0,0">
       <property name="sizeConstraint">
@@ -35,9 +38,9 @@
        </widget>
       </item>
       <item row="3" column="0" colspan="2">
-       <widget class="QPushButton" name="playButton">
+       <widget class="QPushButton" name="changeGridButton">
         <property name="text">
-         <string>Play</string>
+         <string>change grid</string>
         </property>
        </widget>
       </item>
@@ -88,6 +91,41 @@
       </item>
       <item row="4" column="0" colspan="3">
        <widget class="AkariView" name="Gridwidget" native="true"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,8">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
+      <item>
+       <widget class="QPushButton" name="restartButton">
+        <property name="text">
+         <string>Restart</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="doneButton">
+        <property name="text">
+         <string>Done</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="messageLabel">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>12</pointsize>
+          <italic>true</italic>
+         </font>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>

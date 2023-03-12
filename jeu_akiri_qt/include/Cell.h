@@ -9,8 +9,7 @@ class Cell : public QWidget
     Q_OBJECT
 
 private:
-    int _row;
-    int _col;
+
     cellState _cellState;
 public:
     explicit Cell(QWidget *parent = nullptr);
@@ -19,7 +18,6 @@ public:
     void setCellState(cellState);
     void drawCell(QPainter *, int size, int pos_x, int pos_y);
 
-signals:
 
 };
 
