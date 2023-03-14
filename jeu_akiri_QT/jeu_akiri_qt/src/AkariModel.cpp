@@ -166,24 +166,24 @@ void AkariModel::fill_neigbours_list(int row, int col,  std::vector<std::pair<in
 }
 
 void AkariModel::onCellClicked(int row, int col) {
-    //peut etre je dois le mettre constante
     std::vector<std::pair<int, int>>  neigbours;
-   // bool inter = false;
 
     if(row < 0 || col < 0) return;
 
     switch (_cellsStateMatrix(row, col)) {
         case UNENLIGHTENED:
+           // _clickedCells.push_back(std::make_pair(row, col));
             fill_neigbours_list(row, col, neigbours);
             for (const auto& pair : neigbours) {
                 _cellsStateMatrix(pair.first, pair.second) = ENLIGHTENED;
             }
              _cellsStateMatrix(row, col) = YELLOW_LAMP;
-             _map[{row, col}] = neigbours;
+              _vector.push_back(std::make_pair(std::make_pair(row, col), neigbours));
             emit responseOnMouseClick(_cellsStateMatrix);
             break;
 
         case ENLIGHTENED:
+           // _clickedCells.push_back(std::make_pair(row, col));
             fill_neigbours_list(row, col, neigbours);
             for (const auto& pair : neigbours) {
                 if(_cellsStateMatrix(pair.first, pair.second) == YELLOW_LAMP) {
@@ -194,16 +194,16 @@ void AkariModel::onCellClicked(int row, int col) {
                 }
             }
             _cellsStateMatrix(row, col) = RED_LAMP;
-            _map[{row, col}] = neigbours;
+            _vector.push_back(std::make_pair(std::make_pair(row, col), neigbours));
             emit responseOnMouseClick(_cellsStateMatrix);
 
             break;
         case RED_LAMP :
-            for (const auto& pair : _map[{row, col}]) {
+           // _clickedCells.push_back(std::make_pair(row, col));
+            for (const auto& pair : value_of({row, col})) {
                 bool isStayingRed = false;
-                if(_cellsStateMatrix(pair.first, pair.second) == RED_LAMP) {
-                    //_cellsStateMatrix(row, col) = ENLIGHTENED; //If a neigbour has a lamp so the cell will be ligtned after removing the lamp
-                    for(const auto& p : _map[{pair.first, pair.second}]) {
+                if(_cellsStateMatrix(pair.first, pair.second) == RED_LAMP) {                 
+                    for(const auto& p : value_of({pair.first, pair.second})) {
                         if(_cellsStateMatrix(p.first, p.second) == RED_LAMP && p !=  std::make_pair(row, col)) {
                             isStayingRed = true;
                             break;
@@ -214,7 +214,7 @@ void AkariModel::onCellClicked(int row, int col) {
                     }
                 }
                 bool found = false;
-                for (const auto& key_value : _map) {
+                for (const auto& key_value : _vector) {
                     if (key_value.first == std::make_pair(row, col)) {
                         continue;
                     }
@@ -228,18 +228,17 @@ void AkariModel::onCellClicked(int row, int col) {
                       _cellsStateMatrix(pair.first, pair.second) = UNENLIGHTENED;
                 }
             }
-    //        if(_cellsStateMatrix(row, col) != ENLIGHTENED) { //If true, then all neigbours are without lamps, so the cell will be unenligtned after removing lamp
-    //            _cellsStateMatrix(row, col) = UNENLIGHTENED;
-    //        }
              _cellsStateMatrix(row, col) = ENLIGHTENED;
-            _map.erase({row, col}); // Remove the cell's neigbours from the map
-            emit responseOnMouseClick(_cellsStateMatrix);
+            //_vector.erase({row, col}); // Remove the cell's neigbours from the map
+             remove({row, col});
+             emit responseOnMouseClick(_cellsStateMatrix);
 
             break;
         case YELLOW_LAMP :
-            for (const auto& pair : _map[{row, col}]) {
+           // _clickedCells.push_back(std::make_pair(row, col));
+            for (const auto& pair : value_of({row, col})) {
                 bool found = false;
-                for (const auto& key_value : _map) {
+                for (const auto& key_value : _vector) {
                     if (key_value.first == std::make_pair(row, col)) {
                         continue;
                     }
@@ -253,8 +252,8 @@ void AkariModel::onCellClicked(int row, int col) {
                       _cellsStateMatrix(pair.first, pair.second) = UNENLIGHTENED;
                 }
             }
-             _cellsStateMatrix(row, col) = UNENLIGHTENED;
-            _map.erase({row, col}); // Remove the cell's neigbours from the map
+             _cellsStateMatrix(row, col) = UNENLIGHTENED;         
+             remove({row, col});
             emit responseOnMouseClick(_cellsStateMatrix);
             break;
         default:
@@ -266,8 +265,6 @@ bool AkariModel:: verify_four_neigbours(int right_lamps_nb, int row, int col) {
     int lamps_nb = 0;
     for(int i = row - 1; i <= row + 1; i += 2) {
         if(i >= 0 && i < get_sizeInteger() && _cellsStateMatrix(i, col) == YELLOW_LAMP) {
-           // emit isDone(false);
-            //return;
             lamps_nb++;
         }
     }
@@ -345,5 +342,32 @@ void AkariModel::clearGrid() {
 }
 
 
+void AkariModel::unDo() {
+
+    if(!_vector.empty()) {
+        std::pair<int, int> lastCellClicked = _vector.rbegin()->first;
+        onCellClicked( lastCellClicked.first, lastCellClicked.second);
+    }
+
+}
+
+void AkariModel::remove(std::pair<int, int> pairToRemove) {
+    auto it = std::find_if(_vector.begin(), _vector.end(), [ pairToRemove](std::pair<std::pair<int, int>,  std::vector<std::pair<int, int>>>  pair) {
+        return pair.first ==  pairToRemove;
+    });
+
+    _vector.erase(it);
 
 
+}
+
+std::vector<std::pair<int, int>> AkariModel::value_of(std::pair<int, int> key) {
+    std::vector<std::pair<int, int>> value;
+    for (const auto& myPair : _vector) {
+        if (key ==  myPair.first ) {
+            value = myPair.second;
+            return  value;
+        }
+    }
+    return value;
+}

@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->doneButton, &QPushButton::clicked, _model, &AkariModel::ONDoneClicked);
     connect(_model, &AkariModel::isDone, this, &MainWindow::onDoneClicked);
     connect(ui->restartButton, &QPushButton::clicked, this, &MainWindow::onRestartClicked);
+    connect(ui->undoButton, &QPushButton::clicked, _model, &AkariModel::unDo);
 }
 
 MainWindow::~MainWindow()
@@ -49,10 +50,11 @@ void MainWindow::updateView() {
 
 void MainWindow::onDoneClicked(bool isDone) {
     if(isDone) {
-        ui->messageLabel->setText("Bingoooo, You won");
+        ui->messageLabel->setText(tr("Bingoooo, You won"));
+        //(tr("Some text in english")
     }
     else {
-        ui->messageLabel->setText("Oooops, Try again");
+        ui->messageLabel->setText(tr("Oooops, Try again"));
     }
 }
 

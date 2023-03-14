@@ -3,7 +3,6 @@
 #include <QObject>
 #include "common.h"
 #include "include/Matrix.h"
-#include <map>
 #include <vector>
 
 class AkariModel : public QObject {
@@ -98,6 +97,9 @@ public slots :
     virtual void onCellClicked(int row, int col);
 
     virtual void ONDoneClicked();
+
+    virtual void unDo();
+
 signals :
   void responseOnMouseClick(Matrix<cellState> &);
   void isDone(bool);
@@ -105,10 +107,12 @@ signals :
 private:
   Size _size;
   Level _level;
- // Matrix<char> & _cellsStateMatrix;
   Matrix<cellState> & _cellsStateMatrix;
 
-  std::map<std::pair<int, int>, std::vector<std::pair<int, int>>> _map;
+
+  //std::unordered_map<std::pair<int, int>, std::vector<std::pair<int, int>>> _map;
+  std::vector<std::pair<std::pair<int, int>, std::vector<std::pair<int, int>>>> _vector;
+  std::vector<std::pair<int, int>> _clickedCells;
 
   /**
    * @brief fill_cellsStateMatrix fill the _cellsStateMatrix from a file
@@ -119,6 +123,10 @@ private:
   void fill_neigbours_list(int beg, int end, std::vector<std::pair<int, int>> & neigbours);
 
   bool verify_four_neigbours(int max_lamps, int row, int col);
+
+  void remove(std::pair<int, int> pairToRemove);
+
+  std::vector<std::pair<int, int>> value_of(std::pair<int, int> key);
 
 
 

@@ -95,7 +95,7 @@
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,8">
+     <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,8">
       <property name="sizeConstraint">
        <enum>QLayout::SetDefaultConstraint</enum>
       </property>
@@ -110,6 +110,13 @@
        <widget class="QPushButton" name="doneButton">
         <property name="text">
          <string>Done</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="undoButton">
+        <property name="text">
+         <string>Undo</string>
         </property>
        </widget>
       </item>
@@ -147,7 +154,7 @@
   <customwidget>
    <class>AkariView</class>
    <extends>QWidget</extends>
-   <header location="global">akariview.h</header>
+   <header>include/AkariView.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
