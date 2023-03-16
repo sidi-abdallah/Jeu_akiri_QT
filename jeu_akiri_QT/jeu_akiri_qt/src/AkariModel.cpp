@@ -62,6 +62,16 @@ Matrix<cellState> & AkariModel::get_cellsStateMatrix() {
     return _cellsStateMatrix;
 }
 
+// begin timer functions
+
+
+
+
+
+
+
+// end timer functions
+
 void AkariModel::fill_cellsStateMatrix(QString filename) {
 
    int lineIndex;

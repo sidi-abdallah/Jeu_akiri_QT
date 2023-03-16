@@ -3,6 +3,7 @@
 #include <QTranslator>
 #include <QFileInfo>
 #include <QLibraryInfo>
+#include <QSettings>
 
 int main(int argc, char *argv[])
 {
@@ -29,9 +30,11 @@ int main(int argc, char *argv[])
                 translator->deleteLater();
             }
         }
-    }
+    }    
 
     MainWindow w;
+    QPoint position = QSettings().value("Config/WindowPosition", QPoint(0, 0)).toPoint();
+    w.move(position);
     w.setWindowTitle("Akari Game");
     w.show();
     return app.exec();

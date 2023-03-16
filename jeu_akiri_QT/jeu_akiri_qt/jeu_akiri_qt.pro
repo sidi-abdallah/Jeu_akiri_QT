@@ -40,7 +40,7 @@ FORMS += \
 TRANSLATIONS += \
     jeu_akiri_qt_fr_FR.ts
 
-
+QT += printsupport
 
 
 # Default rules for deployment.

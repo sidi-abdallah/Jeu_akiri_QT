@@ -15,5 +15,11 @@ enum cellState
     YELLOW_LAMP
 };
 
-
+enum RoundDuration{
+    unlimited,
+    ten_minutes,
+    five_minutes,
+    three_minutes,
+    one_minute
+};
 #endif // COMMON_H

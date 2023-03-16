@@ -31,6 +31,9 @@ protected slots :
     virtual void updateView();
     virtual void onDoneClicked(bool);
     virtual void onRestartClicked();
+    virtual void printWindow();
+
+   void  closeEvent(QCloseEvent *);
 
 signals :
     /**

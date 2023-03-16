@@ -1,0 +1,12 @@
+debug/AkariModel.o
+debug/AkariView.o
+debug/Cell.o
+debug/Grid.o
+debug/main.o
+debug/mainwindow.o
+debug/qrc_grids.o
+debug/moc_AkariModel.o
+debug/moc_mainwindow.o
+debug/moc_AkariView.o
+debug/moc_Cell.o
+debug/moc_Grid.o
