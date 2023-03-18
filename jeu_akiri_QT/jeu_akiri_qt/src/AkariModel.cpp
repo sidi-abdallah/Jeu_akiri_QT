@@ -62,6 +62,7 @@ Matrix<cellState> & AkariModel::get_cellsStateMatrix() {
     return _cellsStateMatrix;
 }
 
+
 void AkariModel::fill_cellsStateMatrix(QString filename) {
 
    int lineIndex;

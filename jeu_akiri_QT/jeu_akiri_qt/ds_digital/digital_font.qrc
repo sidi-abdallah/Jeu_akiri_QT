@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/digital_font">
+        <file>DS-DIGI.TTF</file>
+        <file>DS-DIGIB.TTF</file>
+        <file>DS-DIGII.TTF</file>
+        <file>DS-DIGIT.TTF</file>
+    </qresource>
+</RCC>

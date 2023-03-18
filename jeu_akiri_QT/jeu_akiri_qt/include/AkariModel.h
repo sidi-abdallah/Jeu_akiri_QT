@@ -5,6 +5,8 @@
 #include "include/Matrix.h"
 #include <vector>
 
+
+class QTimer;
 class AkariModel : public QObject {
 
   Q_OBJECT
@@ -34,6 +36,7 @@ public:
     dim_10,
     dim_14
   };
+
 
   /**
    * @brief get_size gets the current value of enum size
@@ -108,6 +111,7 @@ private:
   Size _size;
   Level _level;
   Matrix<cellState> & _cellsStateMatrix;
+
 
 
   //std::unordered_map<std::pair<int, int>, std::vector<std::pair<int, int>>> _map;

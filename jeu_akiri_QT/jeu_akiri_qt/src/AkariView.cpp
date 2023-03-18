@@ -3,7 +3,6 @@
 #include <QWidget>
 #include <QMouseEvent>
 #include <QDebug>
-//#include "include/Matrix.h"
 #include "include/Grid.h"
 #include <QGridLayout>
 
