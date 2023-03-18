@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->doneButton, &QPushButton::clicked, _model, &AkariModel::ONDoneClicked);
     connect(_model, &AkariModel::isDone, this, &MainWindow::onDoneClicked);
     connect(ui->restartButton, &QPushButton::clicked, this, &MainWindow::onRestartClicked);
-     // connect(ui->undoButton, &QPushButton::clicked, _model, &AkariModel::unDo);
+    connect(ui->undoButton, &QPushButton::clicked, _model, &AkariModel::unDo);
 
 
     _duration = QTime(0, 0, 0);
