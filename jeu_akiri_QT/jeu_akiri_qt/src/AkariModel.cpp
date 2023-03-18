@@ -231,7 +231,7 @@ void AkariModel::onCellClicked(int row, int col) {
             }
              _cellsStateMatrix(row, col) = ENLIGHTENED;
             //_vector.erase({row, col}); // Remove the cell's neigbours from the map
-             remove({row, col});
+             remove(std::make_pair(row, col));
              emit responseOnMouseClick(_cellsStateMatrix);
 
             break;
@@ -254,7 +254,7 @@ void AkariModel::onCellClicked(int row, int col) {
                 }
             }
              _cellsStateMatrix(row, col) = UNENLIGHTENED;         
-             remove({row, col});
+             remove(std::make_pair(row, col));
             emit responseOnMouseClick(_cellsStateMatrix);
             break;
         default:

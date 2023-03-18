@@ -105,9 +105,11 @@ void MainWindow::updateView() {
 void MainWindow::onDoneClicked(bool isDone) {
     if(isDone) {
         ui->messageLabel->setText("Bingoooo, You won");
+        ui->messageLabel->setStyleSheet("color: green");
     }
     else {
         ui->messageLabel->setText("Oooops, Try again");
+        ui->messageLabel->setStyleSheet("color: red");
     }
 }
 
