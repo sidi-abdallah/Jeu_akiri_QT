@@ -49,7 +49,6 @@ void Grid::drawGrid(QPainter * _painter, int height){
             cell->drawCell(_painter, _cellWidth, pos_x, pos_y);
         }
     }
-
 }
 
 

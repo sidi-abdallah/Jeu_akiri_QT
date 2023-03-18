@@ -40,8 +40,8 @@ FORMS += \
 TRANSLATIONS += \
     jeu_akiri_qt_fr_FR.ts
 
-QT += printsupport
 
+QT += printsupport
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -49,4 +49,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    grids.qrc
+    ds_digital/digital_font.qrc \
+    grids.qrc \
+    icons/icons.qrc
