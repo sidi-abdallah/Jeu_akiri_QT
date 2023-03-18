@@ -14,4 +14,7 @@
         <file>lights/light.png</file>
         <file>lights/red_light.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>jeu_akiri_qt_fr_FR.qm</file>
+    </qresource>
 </RCC>

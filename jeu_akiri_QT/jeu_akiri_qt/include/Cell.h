@@ -1,6 +1,6 @@
 #ifndef CELL_H
 #define CELL_H
-#include "include/common.h"
+#include "common.h"
 #include <QPainter>
 #include <QWidget>
 

@@ -1,6 +1,6 @@
 #include "include/Cell.h"
 #include <QMouseEvent>
-//#include "include/AkariView.h"
+
 
 
 

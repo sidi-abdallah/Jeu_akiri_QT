@@ -19,9 +19,27 @@ SOURCES += \
     src/AkariModel.cpp\
     src/AkariView.cpp \
     src/Cell.cpp \
-    src/Grid.cpp \
     src/main.cpp\
-    src/mainwindow.cpp
+    src/mainwindow.cpp \
+    src/Grid.cpp \
+#    src/states/State.cpp \
+#    src/states/FullBlackState.cpp \
+#    src/states/ZeroBlackState.cpp \
+#    src/states/OneBlackState.cpp \
+#    src/states/TwoBlackState.cpp \
+#    src/states/ThreeBlackState.cpp \
+#    src/states/FourBlackState.cpp \
+#    src/states/UnenlightenedState.cpp \
+#    src/states/EnlightenedState.cpp \
+#    src/states/YellowLampState.cpp \
+#    src/states/RedLampState.cpp \
+
+
+
+
+
+
+
 
 HEADERS += \
     include/AkariModel.h \
@@ -30,7 +48,19 @@ HEADERS += \
     include/AkariView.h \
     include/Matrix.h \
     include/Cell.h \
-    include/Grid.h
+    include/Grid.h \
+#    include/states/State.h \
+#    include/states/FullBlackState.h \
+#    include/states/ZeroBlackState.h \
+#    include/states/OneBlackState.h \
+#    include/states/TwoBlackState.h \
+#    include/states/ThreeBlackState.h \
+#    include/states/FourBlackState.h \
+#    include/states/UnenlightenedState.h \
+#    include/states/EnlightenedState.h \
+#    include/states/YellowLampState.h \
+#    include/states/RedLampState.h \
+
 
 
 FORMS += \
