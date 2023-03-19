@@ -46,36 +46,41 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Shortcuts
     QMenuBar * menubar = this->menuBar();
-    QMenu * filemenu = menubar->addMenu("File");
+    QMenu * filemenu = menubar->addMenu(QObject::tr("&File"));
 
 
 
     // CTRL+P --> print window
-    QAction * printAction = filemenu->addAction(QObject::tr("Print..."));
+    QAction * printAction = filemenu->addAction(QObject::tr("&Print..."));
     printAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_P));
     printAction->setIcon(QIcon(":/icons/printer.png"));
     connect(printAction, &QAction::triggered, this, &MainWindow::printWindow);
 
 
     // CTRL+Q --> close window
-    QAction * closeAction = filemenu->addAction(QObject::tr("Close"));
+    QAction * closeAction = filemenu->addAction(QObject::tr("&Close"));
     closeAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     closeAction->setIcon(QIcon(":/icons/close.png"));
     connect(closeAction, &QAction::triggered, this, &QMainWindow::close);
 
-    QMenu * gamemenu = menubar->addMenu(QObject::tr("Game"));
+    QMenu * gamemenu = menubar->addMenu(QObject::tr("&Game"));
 
-    // Press "Enter" --> restart
-    QAction * restartAction = gamemenu->addAction(QObject::tr("Restart"));
+    // Press "SPACE" --> restart
+    QAction * restartAction = gamemenu->addAction(QObject::tr("&Restart"));
     restartAction->setShortcut(QKeySequence(Qt::Key_Space));
     restartAction->setIcon(QIcon(":/icons/restart.png"));
     connect(restartAction, &QAction::triggered, ui->restartButton, &QPushButton::click);
 
-    // CTRL+D --> Done
-    QAction *doneAction = gamemenu->addAction(QObject::tr("Done"));
+    // Press "ENTER" --> --> Done
+    QAction *doneAction = gamemenu->addAction(QObject::tr("&Done"));
     doneAction->setShortcut(QKeySequence(Qt::Key_Return));
-
     connect(doneAction, &QAction::triggered, ui->doneButton, &QPushButton::click);
+
+    // CTRL+Z --> Undo
+    QAction * undoAction = gamemenu->addAction(QObject::tr("&Undo"));
+    undoAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
+    // undoAction->setIcon(QIcon(":/icons/restart.png"));
+    connect(undoAction, &QAction::triggered, ui->undoButton, &QPushButton::click);
 
 }
 

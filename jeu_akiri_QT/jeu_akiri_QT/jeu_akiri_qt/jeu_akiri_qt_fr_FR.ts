@@ -6,7 +6,7 @@
     <message>
         <location filename="mainwindow.ui" line="14"/>
         <source>MainWindow</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Jeu Akari</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="34"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="mainwindow.ui" line="76"/>
         <source>change grid</source>
-        <translation type="unfinished">Changer le gris</translation>
+        <translation type="unfinished">Changer de gris</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="83"/>
@@ -91,7 +91,7 @@
     <message>
         <location filename="mainwindow.ui" line="159"/>
         <source>Done</source>
-        <translation type="unfinished">Terminer</translation>
+        <translation type="unfinished">Terminé</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="166"/>
@@ -106,7 +106,7 @@
     <message>
         <location filename="mainwindow.ui" line="208"/>
         <source>Quitter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Quitter</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="211"/>
@@ -116,43 +116,58 @@
     <message>
         <location filename="mainwindow.ui" line="216"/>
         <source>Imprimer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Imprimer</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
+        <location filename="src/main.cpp" line="11"/>
+        <source>Akari Game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="49"/>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="src/mainwindow.cpp" line="54"/>
-        <source>Print...</source>
+        <source>&amp;Print...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="61"/>
-        <source>Close</source>
+        <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="66"/>
-        <source>Game</source>
+        <source>&amp;Game</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="69"/>
-        <source>Restart</source>
+        <source>&amp;Restart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="75"/>
-        <source>Done</source>
+        <source>&amp;Done</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="107"/>
+        <location filename="src/mainwindow.cpp" line="80"/>
+        <source>&amp;Undo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="112"/>
         <source>Bingoooo, You won</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="111"/>
+        <location filename="src/mainwindow.cpp" line="116"/>
         <source>Oooops, Try again</source>
         <translation type="unfinished"></translation>
     </message>

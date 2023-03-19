@@ -80,8 +80,14 @@ public:
    */
   Matrix<cellState> & get_cellsStateMatrix();
 
+  /**
+   * @brief create_grid fills cellsStateMatrix from a line of a filename based on the chosen size and level
+   */
   void create_grid();
 
+  /**
+   * @brief clearGrid resets all cells by removing lamps and lightening from cells
+   */
   void clearGrid();
 
 public slots :
@@ -97,25 +103,58 @@ public slots :
      */
     virtual void set_level(int level_index);
 
+  /**
+   * @brief onCellClicked handles all possible cases when a cell is clicked
+   * @param row the row of the cell
+   * @param col the column of the cell
+   */
     virtual void onCellClicked(int row, int col);
 
+    /**
+     * @brief ONDoneClicked returns the result of the game when done button is clicked
+     */
     virtual void ONDoneClicked();
-
+  /**
+     * @brief unDo remove the last move
+     */
     virtual void unDo();
 
 signals :
+  /**
+   * @brief responseOnMouseClick sends cellState's matrix when a cell is clicked
+   */
   void responseOnMouseClick(Matrix<cellState> &);
+
+  /**
+   * @brief isDone
+   */
   void isDone(bool);
 
 private:
+  /**
+   * @brief _size Size of the grid (chosen by the user and recovered by the model)
+   */
   Size _size;
+
+  /**
+   * @brief _level Level of the grid (chosen by the user and recovered by the model)
+   */
   Level _level;
+
+  /**
+   * @brief _cellsStateMatrix This matrix describes the state of cells in a grid
+   */
   Matrix<cellState> & _cellsStateMatrix;
 
 
-
-  //std::unordered_map<std::pair<int, int>, std::vector<std::pair<int, int>>> _map;
+  /**
+   * @brief _vector
+   */
   std::vector<std::pair<std::pair<int, int>, std::vector<std::pair<int, int>>>> _vector;
+
+  /**
+   * @brief _clickedCells
+   */
   std::vector<std::pair<int, int>> _clickedCells;
 
   /**
@@ -124,12 +163,34 @@ private:
    */
   void fill_cellsStateMatrix(QString filename);
 
+  /**
+   * @brief fill_neigbours_list Populates a vector of neighboring cells for a given cell in the Akari puzzle
+   * @param beg begin of vector neighbors
+   * @param end end of vector neighbors
+   * @param neigbours
+   */
   void fill_neigbours_list(int beg, int end, std::vector<std::pair<int, int>> & neigbours);
 
+  /**
+   * @brief verify_four_neigbours Verifies if a given cell has the correct number of neighboring YELLOW_LAMPs
+   * @param max_lamps number of allowed cells neighbrs with lamps
+   * @param row
+   * @param col
+   * @return
+   */
   bool verify_four_neigbours(int max_lamps, int row, int col);
 
+  /**
+   * @brief remove Removes a pair from a vector of pairs based on a specified key value
+   * @param pairToRemove
+   */
   void remove(std::pair<int, int> pairToRemove);
 
+  /**
+   * @brief value_of Retrieves the value associated with a specified key from a map, represented as a vector of pairs.
+   * @param key
+   * @return
+   */
   std::vector<std::pair<int, int>> value_of(std::pair<int, int> key);
 
 

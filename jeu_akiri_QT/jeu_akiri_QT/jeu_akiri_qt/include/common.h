@@ -1,6 +1,9 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+/**
+ * @brief The cellState enum defines all possible states of a cell
+ */
 enum cellState
 {
     BLACK = 0,
