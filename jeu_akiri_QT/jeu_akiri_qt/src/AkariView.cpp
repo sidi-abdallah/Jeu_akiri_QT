@@ -25,8 +25,10 @@ Grid * AkariView::getGrid() {
 void AkariView::paintEvent(QPaintEvent *event){
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
-    painter.fillRect(rect(), Qt::lightGray);
+//    painter.fillRect(rect(), Qt::lightGray);
 
+    QColor customColor(37, 150, 190);
+//    painter.fillRect(rect(), customColor);
     _grid->drawGrid(&painter, height());
 
 }

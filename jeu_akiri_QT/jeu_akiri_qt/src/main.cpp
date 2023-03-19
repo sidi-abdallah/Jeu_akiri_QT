@@ -10,6 +10,7 @@ int main(int argc, char *argv[])
 
     w.setWindowTitle("Akari Game");
     w.setWindowIcon(QIcon(":/icons/akarigame.png"));
+    w.setStyleSheet("background-color: rgb(37, 150, 190);");
     QPoint position = QSettings().value("Config/WindowPosition", QPoint(0, 0)).toPoint();
     w.move(position);
 //    QVariant savedSize = QSettings().value("Config/AkariSize", 0);
