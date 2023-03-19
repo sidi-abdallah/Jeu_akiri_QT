@@ -6,15 +6,53 @@ class Matrix
 {
 
 private:
+    /**
+     * @brief _size Size of matrix
+     */
     int _size;
+
+    /**
+     * @brief _data Data of matrix
+     */
     T * _data;
 public:
+    /**
+     * @brief Matrix Constructor
+     * @param size
+     */
     Matrix(int size);
+
+    /**
+     * @brief Matrix Copy constructor
+     */
     Matrix(Matrix &);
+
     ~Matrix();
+
+    /**
+     * @brief operator () Defines brackets operator
+     * @param row
+     * @param col
+     * @return (row, col) matrix's element
+     */
     T & operator()(int row, int col);
+
+    /**
+     * @brief operator = Copy assignment operator
+     * @return matrix
+     */
     Matrix & operator=(Matrix & );
+
+    /**
+     * @brief size Getter of _size
+     * @return size of matrix
+     */
     int size();
+
+    /**
+     * @brief data Getter of _data
+     * @return _data
+     */
     T * data();
 };
 

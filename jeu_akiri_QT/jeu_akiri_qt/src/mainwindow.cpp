@@ -46,36 +46,41 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Shortcuts
     QMenuBar * menubar = this->menuBar();
-    QMenu * filemenu = menubar->addMenu("File");
+    QMenu * filemenu = menubar->addMenu("&File");
 
 
 
     // CTRL+P --> print window
-    QAction * printAction = filemenu->addAction("Print...");
+    QAction * printAction = filemenu->addAction("&Print...");
     printAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_P));
     printAction->setIcon(QIcon(":/icons/printer.png"));
     connect(printAction, &QAction::triggered, this, &MainWindow::printWindow);
 
 
     // CTRL+Q --> close window
-    QAction * closeAction = filemenu->addAction("Close");
+    QAction * closeAction = filemenu->addAction("&Close");
     closeAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Q));
     closeAction->setIcon(QIcon(":/icons/close.png"));
     connect(closeAction, &QAction::triggered, this, &QMainWindow::close);
 
-    QMenu * gamemenu = menubar->addMenu("Game");
+    QMenu * gamemenu = menubar->addMenu("&Game");
 
-    // Press "Enter" --> restart
-    QAction * restartAction = gamemenu->addAction("Restart");
+    // Press "SPACE" --> restart
+    QAction * restartAction = gamemenu->addAction("&Restart");
     restartAction->setShortcut(QKeySequence(Qt::Key_Space));
     restartAction->setIcon(QIcon(":/icons/restart.png"));
     connect(restartAction, &QAction::triggered, ui->restartButton, &QPushButton::click);
 
-    // CTRL+D --> Done
-    QAction *doneAction = gamemenu->addAction("Done");
+    // Press "ENTER" --> --> Done
+    QAction *doneAction = gamemenu->addAction("&Done");
     doneAction->setShortcut(QKeySequence(Qt::Key_Return));
-
     connect(doneAction, &QAction::triggered, ui->doneButton, &QPushButton::click);
+
+    // CTRL+Z --> Undo
+    QAction * undoAction = gamemenu->addAction("&Undo");
+    undoAction->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Z));
+    // undoAction->setIcon(QIcon(":/icons/restart.png"));
+    connect(undoAction, &QAction::triggered, ui->undoButton, &QPushButton::click);
 
 }
 
@@ -119,7 +124,6 @@ void MainWindow::onRestartClicked() {
     _model->clearGrid();
     ui->Gridwidget->getGrid()->setSize(_model->get_sizeInteger());
     ui->Gridwidget->getGrid()->setCellsState(_model->get_cellsStateMatrix());
-
 }
 
 
