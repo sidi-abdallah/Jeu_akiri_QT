@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->restartButton, &QPushButton::clicked, this, &MainWindow::onRestartClicked);
     connect(ui->undoButton, &QPushButton::clicked, _model, &AkariModel::unDo);
 
-
+    _roundDuration = (RoundDuration)0;
     _duration = QTime(0, 0, 0);
     _timer = new QTimer(this);
     connect(_timer, &QTimer::timeout, this, &MainWindow::updateTimer);
