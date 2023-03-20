@@ -90,6 +90,8 @@ public:
    */
   void clearGrid();
 
+  void clear_vector();
+
 public slots :
     /**
      * @brief set_size updates model's size from the sizeCombox of widget

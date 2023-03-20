@@ -104,6 +104,7 @@ void MainWindow::updateView() {
    _model->create_grid();
    ui->Gridwidget->getGrid()->setSize(_model->get_sizeInteger());
    ui->Gridwidget->getGrid()->setCellsState(_model->get_cellsStateMatrix());
+   _model->clear_vector();
    emit notify();
 }
 
@@ -124,6 +125,7 @@ void MainWindow::onRestartClicked() {
     _model->clearGrid();
     ui->Gridwidget->getGrid()->setSize(_model->get_sizeInteger());
     ui->Gridwidget->getGrid()->setCellsState(_model->get_cellsStateMatrix());
+    _model->clear_vector();
 
 }
 

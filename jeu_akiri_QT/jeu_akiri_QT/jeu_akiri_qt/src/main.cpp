@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     QStringList languages = QLocale().uiLanguages(); // e.g. ("en-US")
     if (languages.size()) {
         QString language = languages.front().split("-").front(); // -> "en"
-        QString qmFile = QString(":/jeu_akiri_qt_fr_FR.qm").arg(language);
+        QString qmFile = QString(":/jeu_akiri_qt_en_FR.qm").arg(language);
         if (QFileInfo(qmFile).exists()) {
             QTranslator * translator = new QTranslator(&app);
             if (translator->load(qmFile)) {
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 
     w.setWindowTitle(QObject::tr("Akari Game"));
     w.setWindowIcon(QIcon(":/icons/akarigame.png"));
-    w.setStyleSheet("background-color: rgb(37, 150, 190);");
+    w.setStyleSheet("background-color: #29C8D2 ;"); // rgb(37, 150, 190)
     QPoint position = QSettings().value("Config/WindowPosition", QPoint(0, 0)).toPoint();
     w.move(position);
 
