@@ -6,12 +6,13 @@
  */
 enum cellState
 {
-    BLACK = 0,
-    BLACK_0,
+
+    BLACK_0 = 0,
     BLACK_1,
     BLACK_2,
     BLACK_3,
     BLACK_4,
+    BLACK,
     ENLIGHTENED,
     UNENLIGHTENED,
     RED_LAMP,

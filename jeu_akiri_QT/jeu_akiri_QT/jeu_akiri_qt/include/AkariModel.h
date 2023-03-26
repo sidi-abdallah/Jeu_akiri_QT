@@ -6,7 +6,6 @@
 #include <vector>
 
 
-class QTimer;
 class AkariModel : public QObject {
 
   Q_OBJECT
@@ -23,8 +22,6 @@ public:
     Normal,
     Hard
   };
-
-
 
   /*
    * Enum type for grid size
@@ -54,14 +51,16 @@ public:
   int get_sizeInteger();
 
   /**
-   * @brief sizeToString converts the enum type to a string type
+   * @brief sizeToString converts the enum type to a string type to facilitate
+   * reading the file which used to create grid
    * @param size the enum to be converted
    * @return the corresponding string
    */
   std::string sizeToString(Size size);
 
   /**
-   * @brief sizeToString converts the enum type to a string type
+   * @brief sizeToString converts the enum type to a string type to facilitate
+   * reading the file which used to create grid
    * @param size the enum to be converted
    * @return the corresponding string
    */
@@ -90,6 +89,9 @@ public:
    */
   void clearGrid();
 
+  /**
+   * @brief clear_vector clears the vector which contains the cells containing lamps
+   */
   void clear_vector();
 
 public slots :
@@ -113,11 +115,11 @@ public slots :
     virtual void onCellClicked(int row, int col);
 
     /**
-     * @brief ONDoneClicked returns the result of the game when done button is clicked
+     * @brief ONDoneClicked emits an isDone signal with true if the player won , otherwise false when done button is clicked
      */
     virtual void ONDoneClicked();
   /**
-     * @brief unDo remove the last move
+     * @brief unDo remove the last lamps put by the player
      */
     virtual void unDo();
 
@@ -128,7 +130,7 @@ signals :
   void responseOnMouseClick(Matrix<cellState> &);
 
   /**
-   * @brief isDone
+   * @brief isDone emits by the slot onDoneClicked to express the game result
    */
   void isDone(bool);
 
@@ -150,7 +152,9 @@ private:
 
 
   /**
-   * @brief _vector
+   * @brief vector with key value format, contains the particulars of all
+   * cells with lamps on the grid, every cell in this vector has the cells
+   * that it lights up (in vector) as value
    */
   std::vector<std::pair<std::pair<int, int>, std::vector<std::pair<int, int>>>> _vector;
 
@@ -194,10 +198,6 @@ private:
    * @return
    */
   std::vector<std::pair<int, int>> value_of(std::pair<int, int> key);
-
-
-
-
 
 
 };

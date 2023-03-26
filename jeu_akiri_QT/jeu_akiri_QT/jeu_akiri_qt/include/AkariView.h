@@ -5,7 +5,7 @@
 #include"common.h"
 #include "include/Matrix.h"
 
-class Grid;
+class Cell;
 class AkariView : public QWidget
 {
     Q_OBJECT
@@ -17,42 +17,85 @@ public:
     explicit AkariView(QWidget *parent = nullptr);
 
     /**
-     * @brief setGrid Setter function for the Grid object in the AkariView class
-     * @param grid
-     */
-    void setGrid(Grid * grid);
-
-    /**
-     * @brief getGrid Getter function for the Grid object in the AkariView class
-     * @return
-     */
-    Grid * getGrid();
-
-    /**
      * @brief paintEvent Paints the Akari grid and fills the widget background with a light gray color
      * @param event
      */
     virtual void paintEvent(QPaintEvent *event) override;
 
+    /**
+     * @brief getSize Getter of the grid's size
+     * @return size of the grid
+     */
+    int getSize();
+    /**
+     * @brief setSize Setter of grid's size
+     * @param size
+     */
+    void setSize(int size);
+
+    /**
+     * @brief getCellsState Getter of cellsStates' matrix
+     * @return
+     */
+    Matrix<cellState> & getCellsState();
+
+    /**
+     * @brief getCellWidth grid's cell width getter
+     * @return
+     */
+    int getCellWidth();
+
+    /**
+     * @brief drawGrid Draws the grid by iterating through cells and calling the drawCell function of each cell.
+     * @param painter
+     * @param height
+     */
+    void drawGrid(QPainter * painter, int height);
+
 private:
-    Grid * _grid;
+
+    /**
+     * @brief _size Size of grid
+     */
+    int _size;
+
+    /**
+     * @brief _cellSize Grid's cell width
+     */
+    int _cellSize;
+
+    /**
+     * @brief _cellsState Grid's cells states matrix
+     */
+    Matrix<cellState> & _cellsState;
 
 public slots :
-    /**
-      * @brief OncellClicked Slot function that emits a signal indicating a cell in the grid has been clicked
-      * @param row
-      * @param col
-      */
-     void OncellClicked(int row, int col);
-
      /**
-      * @brief mousePressEvent detects the cell clicked on the grid in AkariView
+      * @brief mousePressEvent detects the cell clicked on the grid in AkariView and emits a cellClicked signal
       * @param event
       */
      void mousePressEvent(QMouseEvent *event) override;
 
+     /**
+      * @brief setCellsState Modify _cellsState matrix and emit a signal notify to notify the Qpainter to get updated
+      * @param cellsState
+      */
+     void setCellsState(Matrix<cellState> & cellsState);
+
 signals:
+     /**
+     * @brief cellClicked emits when a cell is clicked by the mouse
+     * @param row
+     * @param col
+     */
     void cellClicked(int row, int col);
+
+    /**
+    * @brief notifies That cellsState matrix has been changed
+    */
+   void notify();
 };
 
 #endif // AkariView_H
+
+
