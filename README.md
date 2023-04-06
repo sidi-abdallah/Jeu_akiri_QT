@@ -6,8 +6,8 @@
 
 # Version: 0.1
 
-# Authors: Mohamed El Mokhtar Sidi Abdallah <mohamed-el-mokhtar.sidi-abdallah@ecole.ensicaen.fr>
-#	   Youssef Aghzere <youssef.aghzere@ecole.ensicaen.fr>
+# Authors : Mohamed El Mokhtar Sidi Abdallah <mohamed-el-mokhtar.sidi-abdallah@ecole.ensicaen.fr>
+#	        Youssef Aghzere <youssef.aghzere@ecole.ensicaen.fr>
 #
 # Last update: 2023-04-06
 
