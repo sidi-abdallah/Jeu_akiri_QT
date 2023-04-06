@@ -12,7 +12,7 @@
 # Last update: 2023-04-06
 
 ## Introduction 
-The Akari game is a Japanese logic puzzle that has gained popularity in recent years. The objective of the game is to place lamps on a grid in such a way that all squares are lit without any areas of darkness.
+The Akari game is a Japanese logic puzzle that has gained popularity in recent years. The objective of the game is to place lamps on a grid in such a way that all squares are lit without any areas of darkness. You can try it by playing [here](https://www.puzzle-light-up.com/). 
 
 As part of this project, we have implemented a version of the Akari game using the Qt/C++ framework. We have also attempted to follow an agile project approach while adhering to software engineering principles such as MVP and design patterns.
 
