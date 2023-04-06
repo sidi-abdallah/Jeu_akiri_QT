@@ -372,3 +372,8 @@ std::vector<std::pair<int, int>> AkariModel::value_of(std::pair<int, int> key) {
     }
     return value;
 }
+
+void AkariModel::clear_vector() {
+    _vector.clear();
+}
+

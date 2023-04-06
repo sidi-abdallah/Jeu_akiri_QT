@@ -27,7 +27,7 @@ void Cell::setCellState(cellState cellState){
     _cellState = cellState;
 }
 
-void Cell::drawCell(QPainter * _painter, int cellWidth, int pos_x, int pos_y){
+void Cell::drawCell(QPainter * _painter, int cellWidth, int pos_x, int pos_y, bool isgreen){
     QImage yellow_light(":/lights/lights/light.png");
     QImage red_light(":/lights/lights/red_light.png");
 
@@ -44,25 +44,25 @@ void Cell::drawCell(QPainter * _painter, int cellWidth, int pos_x, int pos_y){
         break;
         case BLACK_1:
             _painter->fillRect(pos_y, pos_x, cellWidth, cellWidth, Qt::black);
-            _painter->setPen(Qt::white);
+             isgreen ? _painter->setPen(Qt::green) : _painter->setPen(Qt::white);
             _painter->drawText(QRect(pos_y, pos_x, cellWidth, cellWidth), Qt::AlignCenter, "1");
             _painter->setPen(Qt::black);
         break;
         case BLACK_2:
             _painter->fillRect(pos_y, pos_x, cellWidth, cellWidth, Qt::black);
-            _painter->setPen(Qt::white);
+            isgreen ? _painter->setPen(Qt::green) : _painter->setPen(Qt::white);
             _painter->drawText(QRect(pos_y, pos_x, cellWidth, cellWidth), Qt::AlignCenter, "2");
             _painter->setPen(Qt::black);
         break;
         case BLACK_3:
             _painter->fillRect(pos_y, pos_x, cellWidth, cellWidth, Qt::black);
-            _painter->setPen(Qt::white);
+            isgreen ? _painter->setPen(Qt::green) : _painter->setPen(Qt::white);
             _painter->drawText(QRect(pos_y, pos_x, cellWidth, cellWidth), Qt::AlignCenter, "3");
             _painter->setPen(Qt::black);
         break;
         case BLACK_4:
             _painter->fillRect(pos_y, pos_x, cellWidth, cellWidth, Qt::black);
-            _painter->setPen(Qt::white);
+            isgreen ? _painter->setPen(Qt::green) : _painter->setPen(Qt::white);
             _painter->drawText(QRect(pos_y, pos_x, cellWidth, cellWidth), Qt::AlignCenter, "4");
             _painter->setPen(Qt::black);
         break;

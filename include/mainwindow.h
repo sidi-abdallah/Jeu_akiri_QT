@@ -65,9 +65,14 @@ private:
     RoundDuration _roundDuration;
 
     /**
-     * @brief init Initializes the game grid and sets its size and cells state based on the current level and size selected in the UI.
+     * @brief Initializes the game grid by setting its size and cells state based on the current level and size selected in the UI.
      */
     void init();
+
+    /**
+     * @brief timer_alert red when the time is close to up
+     */
+    void timer_alert();
 
 protected:
     /**
@@ -75,9 +80,9 @@ protected:
      */
     void closeEvent(QCloseEvent *);
 
-protected slots :
+private slots :
     /**
-     * @brief updateView update all the viewWidget values from the model one when they changed
+     * @brief updateView updates all the viewWidget values from the model once they changed
      */
     virtual void updateView();
 
@@ -87,24 +92,21 @@ protected slots :
     virtual void onDoneClicked(bool);
 
     /**
-     * @brief onRestartClicked Resets the grid and clears the message label.
+     * @brief onRestartClicked Resets the grid, restart timer and clears the message label.
      */
     virtual void onRestartClicked();
 
     /**
-     * @brief printWindow Allow the player to save a pdf format screen shot of its grid
+     * @brief printWindow Allows the player to save a pdf format screen shot of its grid
      */
     virtual void printWindow();
-
-
-private slots :
     /**
      * @brief updateTimer Function to update a timer displayed in a GUI, with options for different time intervals and alert styles.
      */
     virtual void updateTimer();
 
     /**
-     * @brief restartTimer Restart timer with a new duration based on the round type.
+     * @brief restartTimer Restarts timer with a new duration based on the round type.
      */
     virtual void restartTimer();
 
@@ -121,7 +123,7 @@ private slots :
 
 signals :
     /**
-     * @brief notify sent to update of the viewWidget to launch QPainter again
+     * @brief notifies the viewWidget to launch QPainter again
      */
     void notify();
 

@@ -30,11 +30,12 @@ public:
 
     /**
      * @brief drawCell draws a cell based on its state using QPainter
-     * @param size
+     * @param size the cell size
      * @param pos_x
      * @param pos_y
+     * @param isgreen is used to know if the number inside a cell must be green or not according the lamps number around it
      */
-    void drawCell(QPainter *, int size, int pos_x, int pos_y);
+    void drawCell(QPainter *, int size, int pos_x, int pos_y, bool isgreen = false);
 
 
 };

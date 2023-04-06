@@ -19,7 +19,6 @@ SOURCES += \
     src/AkariModel.cpp\
     src/AkariView.cpp \
     src/Cell.cpp \
-    src/Grid.cpp \
     src/main.cpp\
     src/mainwindow.cpp
 
@@ -29,8 +28,7 @@ HEADERS += \
     include/mainwindow.h \
     include/AkariView.h \
     include/Matrix.h \
-    include/Cell.h \
-    include/Grid.h
+    include/Cell.h
 
 
 FORMS += \
